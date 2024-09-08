@@ -5,6 +5,7 @@ import About from "@/components/about";
 import Pricing from "@/components/pricing";
 import Faq from "@/components/faq";
 import Partners from "@/components/partners";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 
 
@@ -19,7 +20,7 @@ export default function Home() {
       <Faq/>
       <Partners/>
       <Footer/>
-      
+      <GoogleAnalytics />
       
       
     </main>

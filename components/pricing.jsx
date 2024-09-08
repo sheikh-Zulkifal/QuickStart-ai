@@ -4,8 +4,12 @@ import { Button } from "@nextui-org/button";
 import { Divider } from "@nextui-org/divider";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import Popup from "./popUp";
+import { useState } from "react";
 
 export default function Pricing() {
+  const [showPopup, setShowPopup] = useState(false);
+
   const plans = [
     {
       name: "Hobby Plan",
@@ -101,6 +105,7 @@ export default function Pricing() {
           ))}
         </div>
       </motion.div>
+      <Popup show={showPopup} onClose={() => setShowPopup(false)} />
     </section>
   );
 }

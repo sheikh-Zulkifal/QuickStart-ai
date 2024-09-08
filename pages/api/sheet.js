@@ -54,7 +54,7 @@ iPoBbFasPUdlT6bvsU8BHyvj
       range: 'Sheet1!A2:A',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [[email],[name]],
+        values: [[name,email]],
       },
     });
 
