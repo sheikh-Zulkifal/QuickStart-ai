@@ -130,12 +130,12 @@ export default function Hero() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="bg-white rounded-2xl p-8 max-w-md w-full text-center"
+              className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md w-full text-center"
             >
-              <h2 className="text-3xl font-bold mb-4 text-teal-600">
+              <h2 className="text-3xl font-bold mb-4 text-teal-600 dark:text-teal-400">
                 Thank You!
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
                 We've added you to our waitlist. We'll notify you as soon as we launch!
               </p>
               <button
