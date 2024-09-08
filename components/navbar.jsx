@@ -12,7 +12,12 @@ import {
 import { Link } from "@nextui-org/link";
 import { Button } from "@nextui-org/button";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@nextui-org/dropdown";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
@@ -22,14 +27,40 @@ export default function NavBar() {
   const [showThankYou, setShowThankYou] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  
+  const [loading, setLoading] = useState(false); // Added state for loading
+  const [isSubmitting, setIsSubmitting] = useState(false); // Added state for submission status
+  const [error, setError] = useState(""); // Added state for error messages
+
   const menuItems = ["about", "features", "pricing", "team"];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
-    // Logic to handle waitlist submission
-    setShowPopup(false);
-    setShowThankYou(true);
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/sheet", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({name, email }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add email to waitlist");
+      }
+
+      setShowThankYou(true);
+      setEmail("");
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+      console.error("Error:", err);
+    } finally {
+      setLoading(false);
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -47,7 +78,6 @@ export default function NavBar() {
         </NavbarContent>
         <NavbarContent className="hidden sm:flex gap-5" justify="center">
           <NavbarBrand className="flex items-center gap-2">
-            <span className="font-light tracking-tighter text-2xl"></span>
             <Image
               src="/logo.png"
               alt="Quickstart Logo"
@@ -58,14 +88,14 @@ export default function NavBar() {
             />
           </NavbarBrand>
           <NavbarItem>
-            <Button href="" variant="light">
-              About
-            </Button>
+            <Link href="/about">
+              <Button variant="light">About</Button>
+            </Link>
           </NavbarItem>
           <NavbarItem>
             <Dropdown>
               <DropdownTrigger>
-                <Button href="" endContent={<ChevronDown size={16} />} variant="light">
+                <Button endContent={<ChevronDown size={16} />} variant="light">
                   Features
                 </Button>
               </DropdownTrigger>
@@ -83,31 +113,24 @@ export default function NavBar() {
             </Dropdown>
           </NavbarItem>
           <NavbarItem>
-            <Button href="" variant="light">
-              Pricing
-            </Button>
+            <Link href="/pricing">
+              <Button variant="light">Pricing</Button>
+            </Link>
           </NavbarItem>
           <NavbarItem>
-            <Button href="" variant="light">
-              FAQ
-            </Button>
+            <Link href="/faq">
+              <Button variant="light">FAQ</Button>
+            </Link>
           </NavbarItem>
           <NavbarItem>
-            <Button href="" variant="light">
-              Team
-            </Button>
+            <Link href="/team">
+              <Button variant="light">Team</Button>
+            </Link>
           </NavbarItem>
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem className="hidden sm:flex">
-            <Button
-              as={Link}
-              color="primary"
-              onClick={() => setShowPopup(true)}
-              href="#"
-              variant="solid"
-              className="hidden sm:flex"
-            >
+            <Button color="primary" onClick={() => setShowPopup(true)} variant="solid">
               Get Started
             </Button>
           </NavbarItem>
@@ -118,7 +141,7 @@ export default function NavBar() {
         <NavbarMenu>
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link className="w-full" href="#" size="lg" color="foreground">
+              <Link className="w-full" href={`/${item}`} size="lg" color="foreground">
                 {item}
               </Link>
             </NavbarMenuItem>
@@ -164,10 +187,12 @@ export default function NavBar() {
                 <button
                   type="submit"
                   className="px-6 py-2 rounded-full bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300"
+                  disabled={isSubmitting || loading}
                 >
-                  Join Waitlist
+                  {loading ? "Joining..." : "Join Waitlist"}
                 </button>
               </form>
+              {error && <p className="text-red-600">{error}</p>}
             </motion.div>
           </motion.div>
         )}

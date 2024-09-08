@@ -11,6 +11,7 @@
   "dependencies": {
     "@nextui-org/react": "^2.4.6",
     "framer-motion": "^10.18.0",
+    "googleapis": "^144.0.0",
     "lucide-react": "^0.294.0",
     "next": "^14.0.3",
     "next-plausible": "^3.12.0",
