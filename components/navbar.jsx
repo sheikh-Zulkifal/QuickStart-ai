@@ -26,7 +26,11 @@ import Popup from "./popUp";
 export default function NavBar() {
   const [showPopup, setShowPopup] = useState(false);
 
-  const menuItems = ["about", "features", "pricing", "team"];
+  const menuItems = ["about", "features", "pricing", "faq"];
+
+  const handleLogoClick = () => {
+    window.location.reload(); 
+  };
 
   return (
     <>
@@ -35,7 +39,7 @@ export default function NavBar() {
           <NavbarMenuToggle />
         </NavbarContent>
         <NavbarContent className="sm:hidden pr-3" justify="center">
-          <NavbarBrand>
+        <NavbarBrand onClick={handleLogoClick} className="cursor-pointer">
             <Image
               href="#"
               src="/logo.png"
@@ -48,7 +52,10 @@ export default function NavBar() {
         </NavbarContent>
 
         <NavbarContent className="hidden sm:flex gap-5" justify="center">
-          <NavbarBrand className="flex items-center gap-2">
+        <NavbarBrand
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={handleLogoClick}
+          >
             <Image
               href="#"
               src="/logo.png"
@@ -119,7 +126,7 @@ export default function NavBar() {
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 className="w-full"
-                href={`/${item}`}
+                href={`#${item}`}
                 size="lg"
                 color="foreground"
               >
