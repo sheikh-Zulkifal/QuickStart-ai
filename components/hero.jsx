@@ -20,7 +20,7 @@ export default function Hero() {
 
   return (
     <div className="relative justify-center items-center">
-      <section className="max-w-screen-xl mx-auto px-4 py-28 gap-12 md:px-8 flex flex-col justify-center items-center">
+      <section id="hero" className="max-w-screen-xl mx-auto px-4 py-28 gap-12 md:px-8 flex flex-col justify-center items-center">
         <motion.div
           initial={{ y: 5, opacity: 0 }}
           animate={{

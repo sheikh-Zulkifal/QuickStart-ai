@@ -6,7 +6,7 @@ import { Button } from "@nextui-org/button";
 export default function About() {
   return (
     <div className="relative flex justify-center items-center">
-      <section className="max-w-screen-xl mx-auto px-4 py-20 gap-12 md:px-8 flex flex-col md:flex-row justify-center items-center">
+      <section id="about" className="max-w-screen-xl mx-auto px-4 py-20 gap-12 md:px-8 flex flex-col md:flex-row justify-center items-center">
         
         <motion.div
           initial={{ y: 0 }}
@@ -39,9 +39,11 @@ export default function About() {
             </span>
           </h2>
           <p className="max-w-2xl mx-auto text-foreground/80 text-balance md:mx-0">
-            Quickstart is a cutting-edge SaaS solution that provides businesses
-            with powerful chatbot capabilities through an easy-to-integrate npm
-            package.
+          Introducing QuickStart AI, a groundbreaking, AI-powered live chat solution designed to streamline customer 
+          support for businesses! QuickStart AI integrates effortlessly with websites via a simple npm package, 
+          enabling businesses to provide real-time chat support without the need for live agents. 
+          With a personalized dashboard, business owners can manage chat systems, monitor interactions, 
+          and track customer engagement efficiently.
           </p>
 
           <motion.div

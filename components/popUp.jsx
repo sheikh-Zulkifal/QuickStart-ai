@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import ThemeSwitcher from "./ThemeSwitcher";
 import Image from "next/image";
 
 export default function Popup({ show, onClose }) {
@@ -8,6 +9,8 @@ export default function Popup({ show, onClose }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showThankYou, setShowThankYou] = useState(false);
+
+  const modalRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,6 +41,25 @@ export default function Popup({ show, onClose }) {
     }
   };
 
+  // Close the popup if clicking outside of the modal content
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    if (show) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [show, onClose]);
+
   return (
     <AnimatePresence>
       {show && (
@@ -53,22 +75,22 @@ export default function Popup({ show, onClose }) {
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             className="bg-[#081829] rounded-2xl p-8 max-w-md w-full"
+            ref={modalRef} // Attach the modal reference here
           >
             {showThankYou ? (
               <div className="text-center">
                 <div className="flex text-center ml-14 mb-2">
-                <Image
-                src="/thanx.png"
-              alt="tkx"
-              href="/"
-              width={50}
-              height={50}
-              className="object-contain p-1 ml-6"/>
-                  
-                                
-                <h2 className="text-3xl font-bold mt-4 ml-1 bg-gradient-to-t from-light to-foreground text-transparent bg-clip-text border-none">
-                  Thank You!
-                </h2>
+                  <Image
+                    src="/thanx.png"
+                    alt="tkx"
+                    href="/"
+                    width={50}
+                    height={50}
+                    className="object-contain p-1 ml-6"
+                  />
+                  <h2 className="text-3xl font-bold mt-4 ml-1 bg-gradient-to-t from-light to-foreground text-transparent bg-clip-text border-none">
+                    Thank You!
+                  </h2>
                 </div>
                 <p className=" bg-gradient-to-b from-foreground to-foreground/70 text-transparent bg-clip-text text-pretty mb-6">
                   We've added you to our waitlist. We'll notify you as soon as

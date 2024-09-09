@@ -12,39 +12,48 @@ export default function Pricing() {
 
   const plans = [
     {
-      name: "Hobby Plan",
-      desc: "Enjoy limited access to all our features",
+      name: "Free Plan",
+      desc: "Get started with QuickStart AI with 200 free credits.",
       price: 0,
       isMostPop: false,
-      features: ["Make the best schedule", "Make the best schedule"],
+      features: [
+        "200 free credits",
+        "Real-time customer support",
+        "Basic chat widget customization",
+        "Data security"
+      ],
     },
     {
       name: "Basic Plan",
-      desc: "Make the best schedule for your team",
+      desc: "Expand your customer support capabilities with more credits and features.",
       price: 10,
       isMostPop: true,
       features: [
-        "Make the best schedule",
-        "Make the best schedule",
-        "Make the best schedule",
+        "500 credits per month",
+        "Real-time customer support",
+        "Customizable chat widget",
+        "Access to interaction analytics",
+        "Data security"
       ],
     },
     {
       name: "Enterprise Plan",
-      desc: "Make the best schedule for your team and more",
+      desc: "For large businesses needing more comprehensive support and customization.",
       price: 20,
       isMostPop: false,
       features: [
-        "Make the best schedule",
-        "Make the best schedule",
-        "Make the best schedule",
-        "Make the best schedule",
+        "Unlimited credits",
+        "Real-time customer support",
+        "Advanced chat widget customization",
+        "Interaction analytics and reporting",
+        "Priority customer support",
+        "Data security and compliance",
       ],
     },
   ];
 
   return (
-    <section className="max-w-screen-xl w-full mx-auto px-4 py-28 gap-12 md:px-8 flex flex-col justify-center items-center">
+    <section id="pricing" className="max-w-screen-xl w-full mx-auto px-4 py-28 gap-12 md:px-8 flex flex-col justify-center items-center">
       <motion.div
         initial={{ y: 5, opacity: 0 }}
         whileInView={{
@@ -56,11 +65,11 @@ export default function Pricing() {
         className="max-w-screen-xl mx-auto px-4 md:px-8"
       >
         <div className="relative max-w-xl mx-auto sm:text-center">
-          <h3 className="text-2xl font-light tracking-tighter sm:text-3xl bg-gradient-to-b from-foreground to-foreground/70 text-transparent bg-clip-text text-pretty">
-            Pricing Plans for your business
+          <h3 className="text-2xl tracking-tighter sm:text-3xl to-foreground/70 bg-gradient-to-t from-blue-500  text-transparent bg-clip-text border-none text-pretty">
+            Pricing Plans for QuickStart AI
           </h3>
-          <div className="mt-3 max-w-xl text-foreground/80 text-balance">
-            <p>Select the plan that best suits your needs.</p>
+          <div className="max-w-xl text-foreground/80 text-center">
+            <p>Select the plan that best suits your business needs.</p>
           </div>
         </div>
         <div className="mt-16 gap-10 grid lg:grid-cols-3 place-content-center">

@@ -36,24 +36,30 @@ export default function NavBar() {
         </NavbarContent>
         <NavbarContent className="sm:hidden pr-3" justify="center">
           <NavbarBrand>
-            <span className="font-light tracking-tighter text-inherit text-lg">
-              Quickstart
-            </span>
+            <Image
+              href="#"
+              src="/logo.png"
+              alt="Quickstart Logo"
+              width={60} 
+              height={60}
+              className="object-contain"
+            />
           </NavbarBrand>
         </NavbarContent>
+
         <NavbarContent className="hidden sm:flex gap-5" justify="center">
           <NavbarBrand className="flex items-center gap-2">
             <Image
+              href="#"
               src="/logo.png"
               alt="Quickstart Logo"
-              href="/"
-              width={57}
-              height={57}
+              width={65}
+              height={65}
               className="object-contain"
             />
           </NavbarBrand>
           <NavbarItem>
-            <Link href="/about">
+            <Link href="#about">
               <Button variant="light">About</Button>
             </Link>
           </NavbarItem>
@@ -69,33 +75,38 @@ export default function NavBar() {
                 className="w-[340px]"
                 itemClasses={{ base: "gap-4" }}
               >
-                <DropdownItem>Autoscaling</DropdownItem>
-                <DropdownItem>Usage Metrics</DropdownItem>
-                <DropdownItem>Production Ready</DropdownItem>
-                <DropdownItem>+99% Uptime</DropdownItem>
+                <DropdownItem>Real-time customer support</DropdownItem>
+                <DropdownItem>Data security</DropdownItem>
+                <DropdownItem>Chat widget customization</DropdownItem>
+                <DropdownItem>Easy integration</DropdownItem>
+                <DropdownItem>Optimized Website Performance</DropdownItem>
                 <DropdownItem>+Supreme Support</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </NavbarItem>
           <NavbarItem>
-            <Link href="/pricing">
+            <Link href="#pricing">
               <Button variant="light">Pricing</Button>
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link href="/faq">
+            <Link href="#faq">
               <Button variant="light">FAQ</Button>
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link href="/team">
+            <Link href="#team">
               <Button variant="light">Team</Button>
             </Link>
           </NavbarItem>
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem className="hidden sm:flex">
-            <Button color="primary" onClick={() => setShowPopup(true)} variant="solid">
+            <Button
+              color="primary"
+              onClick={() => setShowPopup(true)}
+              variant="solid"
+            >
               Get Started
             </Button>
           </NavbarItem>
@@ -106,7 +117,12 @@ export default function NavBar() {
         <NavbarMenu>
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link className="w-full" href={`/${item}`} size="lg" color="foreground">
+              <Link
+                className="w-full"
+                href={`/${item}`}
+                size="lg"
+                color="foreground"
+              >
                 {item}
               </Link>
             </NavbarMenuItem>
