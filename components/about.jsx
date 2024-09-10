@@ -22,7 +22,8 @@ export default function About() {
           <img
             src="/aboutus.png"
             alt="Descriptive Alt Text"
-            className="rounded-lg shadow-md"
+            className="rounded-lg"
+            style={{ boxShadow: "none" }}
           />
         </motion.div>
 
